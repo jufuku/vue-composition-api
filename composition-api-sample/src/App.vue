@@ -4,17 +4,40 @@
       alt="Vue logo"
       src="./assets/logo.png"
     >
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <div>初期値：{{ count }}</div>
+    <Sample1 :count-num.sync="count" />
+    <Sample2 :count-num.sync="count" />
+    <Sample3 :count-num.sync="count" />
+    <ProvideInjectParent :count-num.sync="count" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
+import Sample1 from '@/components/Sample1.vue';
+import Sample2 from '@/components/Sample2.vue';
+import Sample3 from '@/components/Sample3.vue';
+import ProvideInjectParent from '@/components/ProvideInjectParent.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld,
+    Sample1,
+    Sample2,
+    Sample3,
+    ProvideInjectParent,
+  },
+  data: () => ({
+    num: 10,
+  }),
+  computed: {
+    count: {
+      get() {
+        return this.num;
+      },
+      set(value) {
+        this.num = value;
+      },
+    },
   },
 };
 </script>
